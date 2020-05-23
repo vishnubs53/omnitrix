@@ -5,7 +5,8 @@ import java.util.Map;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
-import java.util.Date;  
+import java.util.Date;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,20 @@ public Map<String, String> intro()
     map.put("response", System.getProperty("user.name") );
 	return map;
 }
-	
+	@GetMapping("/random")
+	public Map<String, Integer> random()
+	{
+		Random r = new Random();
+		int random=r.nextInt((200 ) + 1);
+		String response="System error : failure detected";
+		if(random<100)
+			response="No error";
+
+		Map<String, Integer> map = new HashMap<>();
+
+		map.put(response, random);
+		return map;
+	}
 @GetMapping("/time")
 public Map<String, String> time()
 {
