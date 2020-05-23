@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Random;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,18 +23,17 @@ public Map<String, String> intro()
 	return map;
 }
 ///random number
-	@GetMapping("/random")
-	public Map<String, Integer> random()
+	@GetMapping("/random/{code}")
+	public Map<String, Float> random(@PathVariable("code") float code)
 	{
-		Random r = new Random();
-		int random=r.nextInt((200 ) + 1);
+
 		String response="System error : failure detected";
-		if(random<100)
+		if(code<100)
 			response="No error";
 
-		Map<String, Integer> map = new HashMap<>();
+		Map<String, Float> map = new HashMap<>();
 
-		map.put(response, random);
+		map.put(response, code);
 		return map;
 	}
 @GetMapping("/time")
