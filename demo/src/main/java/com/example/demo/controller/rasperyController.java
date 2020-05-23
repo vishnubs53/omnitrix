@@ -21,6 +21,7 @@ public Map<String, String> intro()
     map.put("response", System.getProperty("user.name") );
 	return map;
 }
+///random number
 	@GetMapping("/random")
 	public Map<String, Integer> random()
 	{
